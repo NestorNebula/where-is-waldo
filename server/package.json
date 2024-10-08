@@ -1,0 +1,21 @@
+{
+  "name": "where-is-waldo-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noa Houssier",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.20.0"
+  }
+}
