@@ -1,0 +1,19 @@
+{
+  "name": "where-is-waldo",
+  "version": "1.0.0",
+  "description": "A Photo Tagging App",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NestorNebula/where-is-waldo.git"
+  },
+  "author": "Noa Houssier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NestorNebula/where-is-waldo/issues"
+  },
+  "homepage": "https://github.com/NestorNebula/where-is-waldo#readme"
+}
