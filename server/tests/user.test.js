@@ -21,8 +21,9 @@ describe('user route', () => {
   it('returns user informations', (done) => {
     request(app)
       .get(`/${mockUser.id}`)
+      .expect(200)
       .then((res) => {
-        expect(res, done).toEqual(mockUser);
+        expect(res.body.user).toEqual(mockUser);
       });
   });
 });
