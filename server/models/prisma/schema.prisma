@@ -6,3 +6,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       String  @id @default(cuid())
+  username String? @db.VarChar(50)
+  rounds   Round[]
+}
+
+model Photo {
+  id         Int                  @id @default(autoincrement())
+  title      String               @unique @db.VarChar(20)
+  characters CharactersOnPhotos[]
+  rounds     Round[]
+}
+
+model Character {
+  id     Int                  @id @default(autoincrement())
+  name   String               @unique @db.VarChar(20)
+  avatar String               @unique @db.VarChar(20)
+  photos CharactersOnPhotos[]
+}
+
+model CharactersOnPhotos {
+  photo       Photo     @relation(fields: [photoId], references: [id])
+  photoId     Int
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  coordinates Json
+
+  @@id([photoId, characterId])
+}
+
+model Round {
+  user      User      @relation(fields: [userId], references: [id])
+  userId    String
+  photo     Photo     @relation(fields: [photoId], references: [id])
+  photoId   Int
+  startTime DateTime  @default(now())
+  endTime   DateTime?
+  score     BigInt?
+
+  @@id([userId, photoId])
+}
