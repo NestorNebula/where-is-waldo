@@ -12,4 +12,6 @@ app.use('/users', router.user);
 app.use('/photos', router.photo);
 app.use('/rounds', router.round);
 
-app.listen(process.env.PORT, () => `App running on PORT ${process.env.PORT}.`);
+app.listen(process.env.PORT, () =>
+  console.log(`App running on PORT ${process.env.PORT}.`)
+);
