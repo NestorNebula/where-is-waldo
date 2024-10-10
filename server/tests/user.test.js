@@ -19,6 +19,11 @@ jest.mock('../models/queries', () => {
         return null;
       }
     },
+    createUser: () => {
+      return {
+        user: mockUser,
+      };
+    },
   };
 });
 
@@ -33,5 +38,15 @@ describe('/GET user route', () => {
 
   it("returns 404 when user doesn't exist", (done) => {
     request(app).get(`/${fakeUser.id}`).expect(404, done);
+  });
+});
+
+describe('/POST user route', () => {
+  it('returns user id after creating it', () => {
+    return request(app)
+      .post('/')
+      .then((res) => {
+        expect(res.body.id).toEqual(mockUser.id);
+      });
   });
 });
