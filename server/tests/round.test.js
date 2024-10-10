@@ -31,6 +31,16 @@ jest.mock('../models/queries', () => {
     createRound: () => {
       return mockRound;
     },
+    updateOngoingRound: (userId, photoId, round) => {
+      mockOngoingRound.endTime = round.endTime;
+      mockOngoingRound.score = round.score;
+      return mockOngoingRound;
+    },
+    updateRound: (userId, photoId) => {
+      mockRound.endTime = null;
+      mockRound.score = null;
+      return mockRound;
+    },
   };
 });
 
