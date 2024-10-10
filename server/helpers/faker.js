@@ -9,12 +9,23 @@ const getFakeUser = () => {
 };
 
 const getFakePhoto = () => {
+  const id = faker.number.int({ max: 100 });
   return {
-    id: faker.number.int({ max: 100 }),
+    id,
     title: faker.string.alpha(10),
     characters: [],
-    rounds: [],
+    rounds: [getFakeRound(id), getFakeRound(id), getFakeRound(id)],
   };
 };
 
-module.exports = { getFakeUser, getFakePhoto };
+const getFakeRound = (photoId) => {
+  return {
+    userId: faker.string.uuid(),
+    photoId,
+    startTime: faker.date.recent(),
+    endTime: new Date(Date.now()),
+    score: faker.number.bigInt(),
+  };
+};
+
+module.exports = { getFakeUser, getFakePhoto, getFakeRound };
