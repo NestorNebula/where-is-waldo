@@ -36,4 +36,4 @@ const getAllPhotos = async () => {
 
 // Round queries
 
-module.exports = { getUser, createUser, updateUser };
+module.exports = { getUser, createUser, updateUser, getAllPhotos };
