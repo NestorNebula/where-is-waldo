@@ -31,7 +31,7 @@ jest.mock('../models/queries', () => {
       const user = users.find((user) => user.id === userId);
       if (user) {
         user.username = username;
-        return user;
+        return { user };
       } else {
         return null;
       }
@@ -68,6 +68,7 @@ describe('/PUT user route', () => {
   it('updates existing user', () => {
     return request(app)
       .put(`/${mockUser.id}`)
+      .type('form')
       .send({ username: fakeUser.username })
       .expect(200)
       .then((res) => {
@@ -81,6 +82,7 @@ describe('/PUT user route', () => {
     request(app)
       .put(`/${fakeUser.id}`)
       .send({ username: mockUser.username })
+      .type('form')
       .expect(400, done());
   });
 });
