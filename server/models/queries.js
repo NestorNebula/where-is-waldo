@@ -70,6 +70,15 @@ const getPhotoBestRounds = async (photoId, limit = 100) => {
   return rounds;
 };
 
+const createRound = async (userId, photoId) => {
+  await prisma.round.create({
+    data: {
+      userId,
+      photoId,
+    },
+  });
+};
+
 module.exports = {
   getUser,
   createUser,
@@ -79,4 +88,5 @@ module.exports = {
   createPhoto,
   updatePhoto,
   getPhotoBestRounds,
+  createRound,
 };
