@@ -21,6 +21,11 @@ const postPhoto = async (req, res) => {
   res.sendStatus(201);
 };
 
-const updatePhoto = () => {};
+const updatePhoto = async (req, res) => {
+  const photo = await prisma.getPhoto(+req.params.photoId);
+  if (!photo) return res.sendStatus(400);
+  const updatedPhoto = await prisma.updatePhoto(photo.id, req.body.title);
+  res.json({ photo: updatedPhoto });
+};
 
 module.exports = { getPhotos, getPhotoRounds, postPhoto, updatePhoto };
