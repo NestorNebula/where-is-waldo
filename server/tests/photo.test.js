@@ -5,12 +5,18 @@ const { getFakePhoto } = require('../helpers/faker');
 app.use('/', router);
 
 const mockPhoto = getFakePhoto;
+const mockedPhoto = getFakePhoto();
 
 jest.mock('../models/queries', () => {
   return {
     ...jest.requireActual('../models/queries'),
     getAllPhotos: () => {
       return [mockPhoto(), mockPhoto(), mockPhoto()];
+    },
+    getPhotoBestRounds: () => {
+      return mockedPhoto.rounds.sort((a, b) => {
+        a.score - b.score;
+      });
     },
   };
 });
@@ -21,6 +27,26 @@ describe('/GET photo route', () => {
       .get('/')
       .then((res) => {
         expect(res.body.photos.length).toBe(3);
+      });
+  });
+
+  it("returns photo's best scores", () => {
+    return request(app)
+      .get(`/${mockedPhoto.id}/rounds`)
+      .then((res) => {
+        const rounds = res.body.rounds;
+        expect(rounds[0].score).toBeLessThanOrEqual(rounds[1].score);
+        expect(rounds[1].score).toBeLessThanOrEqual(rounds[2].score);
+      });
+  });
+
+  it('returns the queried number of best scores', () => {
+    return request(app)
+      .get(`/${mockedPhoto.id}/rounds`)
+      .query({ limit: 2 })
+      .then((res) => {
+        const rounds = res.body.rounds;
+        expect(rounds.length).toBe(2);
       });
   });
 });
