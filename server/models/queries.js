@@ -117,6 +117,7 @@ const updateRound = async (userId, photoId) => {
       },
     },
     data: {
+      startTime: new Date(Date.now()),
       endTime: null,
       score: null,
     },
