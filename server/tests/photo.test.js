@@ -8,10 +8,10 @@ const mockPhoto = getFakePhoto;
 
 jest.mock('../models/queries', () => {
   return {
+    ...jest.requireActual('../models/queries'),
     getAllPhotos: () => {
       return [mockPhoto(), mockPhoto(), mockPhoto()];
     },
-    ...jest.requireActual('../models/queries'),
   };
 });
 
