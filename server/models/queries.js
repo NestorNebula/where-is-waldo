@@ -49,6 +49,16 @@ const createPhoto = async (title) => {
   });
 };
 
+const updatePhoto = async (id, title) => {
+  const photo = await prisma.photo.update({
+    where: { id },
+    data: {
+      title,
+    },
+  });
+  return photo;
+};
+
 // Round queries
 
 const getPhotoBestRounds = async (photoId, limit = 100) => {
@@ -67,5 +77,6 @@ module.exports = {
   getPhoto,
   getAllPhotos,
   createPhoto,
+  updatePhoto,
   getPhotoBestRounds,
 };
