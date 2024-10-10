@@ -32,6 +32,10 @@ jest.mock('../models/queries', () => {
     createPhoto: () => {
       return;
     },
+    updatePhoto: (id, title) => {
+      mockedPhoto.title = title;
+      return { mockedPhoto };
+    },
   };
 });
 
@@ -76,5 +80,19 @@ describe('/POST photo route', () => {
       .send({ title: 'title' })
       .type('form')
       .expect(201, done);
+  });
+});
+
+describe('/PUT photo route', () => {
+  it('update photos and returns it', () => {
+    return request(app)
+      .put(`/${mockedPhoto.id}`)
+      .send({ title: 'title' })
+      .type('form')
+      .expect(200)
+      .then((res) => {
+        const { photo } = res.body;
+        expect(photo.title).toBe('title');
+      });
   });
 });
