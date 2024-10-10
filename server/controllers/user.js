@@ -7,7 +7,11 @@ const getUser = async (req, res) => {
   res.json(user);
 };
 
-const postUser = () => {};
+const postUser = async (req, res) => {
+  const { user } = await prisma.createUser();
+  if (!user) return res.sendStatus(500);
+  res.status(201).json({ id: user.id });
+};
 
 const updateUser = () => {};
 
