@@ -34,7 +34,7 @@ jest.mock('../models/queries', () => {
     },
     updatePhoto: (id, title) => {
       mockedPhoto.title = title;
-      return { mockedPhoto };
+      return mockedPhoto;
     },
   };
 });
