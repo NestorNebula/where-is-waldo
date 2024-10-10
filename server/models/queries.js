@@ -17,8 +17,18 @@ const createUser = async () => {
   return user;
 };
 
+const updateUser = async (id, username) => {
+  const user = await prisma.user.update({
+    where: { id },
+    data: {
+      username,
+    },
+  });
+  return user;
+};
+
 // Photo queries
 
 // Round queries
 
-module.exports = { getUser, createUser };
+module.exports = { getUser, createUser, updateUser };
