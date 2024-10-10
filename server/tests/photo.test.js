@@ -29,6 +29,9 @@ jest.mock('../models/queries', () => {
       }
       return results;
     },
+    createPhoto: () => {
+      return;
+    },
   };
 });
 
@@ -63,5 +66,15 @@ describe('/GET photo route', () => {
 
   it("returns 400 when photoId isn't correct", (done) => {
     request(app).get(`/${getFakePhoto().id}/rounds`).expect(400, done);
+  });
+});
+
+describe('/POST photo route', () => {
+  it('returns 201 after posting photo', (done) => {
+    request(app)
+      .post('/')
+      .send({ title: 'title' })
+      .type('form')
+      .expect(201, done);
   });
 });
