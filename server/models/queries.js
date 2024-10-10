@@ -29,6 +29,11 @@ const updateUser = async (id, username) => {
 
 // Photo queries
 
+const getAllPhotos = async () => {
+  const photos = await prisma.photo.findMany();
+  return photos;
+};
+
 // Round queries
 
 module.exports = { getUser, createUser, updateUser };
