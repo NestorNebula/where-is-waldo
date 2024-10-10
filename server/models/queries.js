@@ -29,6 +29,13 @@ const updateUser = async (id, username) => {
 
 // Photo queries
 
+const getPhoto = async (id) => {
+  const photo = await prisma.photo.findUnique({
+    where: { id },
+  });
+  return photo;
+};
+
 const getAllPhotos = async () => {
   const photos = await prisma.photo.findMany();
   return photos;
@@ -49,6 +56,7 @@ module.exports = {
   getUser,
   createUser,
   updateUser,
+  getPhoto,
   getAllPhotos,
   getPhotoBestRounds,
 };
