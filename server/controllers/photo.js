@@ -16,7 +16,10 @@ const getPhotoRounds = async (req, res) => {
   rounds ? res.json({ rounds }) : res.json({ rounds: [] });
 };
 
-const postPhoto = () => {};
+const postPhoto = async (req, res) => {
+  await prisma.createPhoto(req.body.title);
+  res.sendStatus(201);
+};
 
 const updatePhoto = () => {};
 
