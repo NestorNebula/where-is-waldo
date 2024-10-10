@@ -6,22 +6,25 @@ app.use('/', router);
 
 const mockUser = getFakeUser();
 
-jest.mock('../models/queries', async () => {
+jest.mock('../models/queries', () => {
   return {
     ...jest.requireActual('../models/queries'),
-    getUser: () => {
-      return {
-        mockUser,
-      };
+    getUser: (userId) => {
+      if (userId === mockUser.id) {
+        return {
+          user: mockUser,
+        };
+      } else {
+        return null;
+      }
     },
   };
 });
 
 describe('user route', () => {
-  it('returns user informations', (done) => {
-    request(app)
+  it('returns user informations', () => {
+    return request(app)
       .get(`/${mockUser.id}`)
-      .expect(200)
       .then((res) => {
         expect(res.body.user).toEqual(mockUser);
       });
