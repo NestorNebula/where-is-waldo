@@ -28,4 +28,19 @@ const getFakeRound = (photoId) => {
   };
 };
 
-module.exports = { getFakeUser, getFakePhoto, getFakeRound };
+const getFakeOngoingRound = (photoId) => {
+  return {
+    userId: faker.string.uuid(),
+    photoId,
+    startTime: faker.date.recent(),
+    endTime: null,
+    score: null,
+  };
+};
+
+module.exports = {
+  getFakeUser,
+  getFakePhoto,
+  getFakeRound,
+  getFakeOngoingRound,
+};
