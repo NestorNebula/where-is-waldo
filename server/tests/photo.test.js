@@ -12,17 +12,22 @@ jest.mock('../models/queries', () => {
     ...jest.requireActual('../models/queries'),
     getPhoto: (id) => {
       if (id === mockedPhoto.id) {
-        return true;
+        return mockedPhoto;
       }
       return false;
     },
     getAllPhotos: () => {
       return [mockPhoto(), mockPhoto(), mockPhoto()];
     },
-    getPhotoBestRounds: () => {
-      return mockedPhoto.rounds.sort((a, b) => {
-        a.score - b.score;
+    getPhotoBestRounds: (id, limit = 100) => {
+      mockedPhoto.rounds.sort((a, b) => {
+        return a.score - b.score;
       });
+      const results = [];
+      for (let i = 0; i < limit; i++) {
+        results.push(mockedPhoto.rounds[i]);
+      }
+      return results;
     },
   };
 });
