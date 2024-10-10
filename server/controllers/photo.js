@@ -6,7 +6,15 @@ const getPhotos = async (req, res) => {
   res.json({ photos });
 };
 
-const getPhotoRounds = () => {};
+const getPhotoRounds = async (req, res) => {
+  const photo = await prisma.getPhoto(+req.params.photoId);
+  if (!photo) return res.sendStatus(400);
+  const rounds = await prisma.getPhotoBestRounds(
+    photo.id,
+    req.query.limit && req.query.limit <= 100 ? req.query.limit : 100
+  );
+  rounds ? res.json({ rounds }) : res.json({ rounds: [] });
+};
 
 const postPhoto = () => {};
 
