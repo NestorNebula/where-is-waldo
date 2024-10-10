@@ -10,6 +10,12 @@ const mockedPhoto = getFakePhoto();
 jest.mock('../models/queries', () => {
   return {
     ...jest.requireActual('../models/queries'),
+    getPhoto: (id) => {
+      if (id === mockedPhoto.id) {
+        return true;
+      }
+      return false;
+    },
     getAllPhotos: () => {
       return [mockPhoto(), mockPhoto(), mockPhoto()];
     },
@@ -48,5 +54,9 @@ describe('/GET photo route', () => {
         const rounds = res.body.rounds;
         expect(rounds.length).toBe(2);
       });
+  });
+
+  it("returns 400 when photoId isn't correct", (done) => {
+    request(app).get(`/${getFakePhoto().id}/rounds`).expect(400, done);
   });
 });
