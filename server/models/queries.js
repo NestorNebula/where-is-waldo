@@ -61,6 +61,18 @@ const updatePhoto = async (id, title) => {
 
 // Round queries
 
+const getRound = async (userId, photoId) => {
+  const round = await prisma.round.findUnique({
+    where: {
+      userId_photoId: {
+        userId,
+        photoId,
+      },
+    },
+  });
+  return round;
+};
+
 const getPhotoBestRounds = async (photoId, limit = 100) => {
   const rounds = await prisma.round.findMany({
     where: { photoId },
@@ -87,6 +99,7 @@ module.exports = {
   getAllPhotos,
   createPhoto,
   updatePhoto,
+  getRound,
   getPhotoBestRounds,
   createRound,
 };
