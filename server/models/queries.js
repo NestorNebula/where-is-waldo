@@ -12,8 +12,13 @@ const getUser = async (id) => {
   return user;
 };
 
+const createUser = async () => {
+  const user = await prisma.user.create({});
+  return user;
+};
+
 // Photo queries
 
 // Round queries
 
-module.exports = { getUser };
+module.exports = { getUser, createUser };
