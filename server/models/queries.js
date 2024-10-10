@@ -36,4 +36,19 @@ const getAllPhotos = async () => {
 
 // Round queries
 
-module.exports = { getUser, createUser, updateUser, getAllPhotos };
+const getPhotoBestRounds = async (photoId, limit = 100) => {
+  const rounds = await prisma.round.findMany({
+    where: { photoId },
+    orderBy: { score: { sort: 'asc', nulls: 'last' } },
+    take: limit,
+  });
+  return rounds;
+};
+
+module.exports = {
+  getUser,
+  createUser,
+  updateUser,
+  getAllPhotos,
+  getPhotoBestRounds,
+};
