@@ -22,7 +22,7 @@ jest.mock('../models/queries', () => {
   };
 });
 
-describe('user route', () => {
+describe('/GET user route', () => {
   it('returns user informations', () => {
     return request(app)
       .get(`/${mockUser.id}`)
