@@ -8,4 +8,13 @@ const getFakeUser = () => {
   };
 };
 
-module.exports = { getFakeUser };
+const getFakePhoto = () => {
+  return {
+    id: faker.number.int({ max: 100 }),
+    title: faker.string.alpha(10),
+    characters: [],
+    rounds: [],
+  };
+};
+
+module.exports = { getFakeUser, getFakePhoto };
