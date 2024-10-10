@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { photo } = require('../controllers/controller');
 
 const prisma = new PrismaClient();
 
@@ -91,6 +92,38 @@ const createRound = async (userId, photoId) => {
   });
 };
 
+const updateOngoingRound = async (userId, photoId, round) => {
+  const updatedRound = await prisma.round.update({
+    where: {
+      userId_photoId: {
+        userId,
+        photoId,
+      },
+    },
+    data: {
+      endTime: round.endTime,
+      score: round.score,
+    },
+  });
+  return updatedRound;
+};
+
+const updateRound = async (userId, photoId) => {
+  const round = await prisma.round.update({
+    where: {
+      userId_photoId: {
+        userId,
+        photoId,
+      },
+    },
+    data: {
+      endTime: null,
+      score: null,
+    },
+  });
+  return round;
+};
+
 module.exports = {
   getUser,
   createUser,
@@ -102,4 +135,6 @@ module.exports = {
   getRound,
   getPhotoBestRounds,
   createRound,
+  updateOngoingRound,
+  updateRound,
 };
