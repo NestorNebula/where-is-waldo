@@ -60,7 +60,7 @@ describe('/PUT round route', () => {
     return request(app)
       .put(`/${mockRound.id}`)
       .send({ userId: mockRound.userId, photoId: mockRound.photoId })
-      .type('body')
+      .type('form')
       .then((res) => {
         const { round } = res.body;
         expect(round.score).toBeNull();
@@ -73,7 +73,9 @@ describe('/PUT round route', () => {
       .send({
         userId: mockOngoingRound.userId,
         photoId: mockOngoingRound.photoId,
+        endTime: new Date(Date.now()),
       })
+      .type('form')
       .then((res) => {
         const { round } = res.body;
         expect(round.score).not.toBeNull();
