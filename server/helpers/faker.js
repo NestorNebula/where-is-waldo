@@ -24,7 +24,7 @@ const getFakeRound = (photoId) => {
     photoId,
     startTime: faker.date.recent(),
     endTime: new Date(Date.now()),
-    score: faker.number.bigInt(),
+    score: faker.number.int(),
   };
 };
 
