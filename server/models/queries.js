@@ -125,6 +125,29 @@ const updateRound = async (userId, photoId) => {
   return round;
 };
 
+// Other queries
+
+const createCharacter = async (character) => {
+  const character = await prisma.character.create({
+    data: {
+      name: character.name,
+      avatar: character.avatar,
+    },
+  });
+  return character;
+};
+
+const connectCharacterOnPhoto = async (characterId, photoId, coordinates) => {
+  const characterOnPhoto = await prisma.charactersOnPhotos.create({
+    data: {
+      characterId,
+      photoId,
+      coordinates,
+    },
+  });
+  return characterOnPhoto;
+};
+
 module.exports = {
   getUser,
   createUser,
@@ -138,4 +161,6 @@ module.exports = {
   createRound,
   updateOngoingRound,
   updateRound,
+  createCharacter,
+  connectCharacterOnPhoto,
 };
