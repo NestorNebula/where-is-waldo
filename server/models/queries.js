@@ -37,7 +37,11 @@ const getPhoto = async (id) => {
 };
 
 const getAllPhotos = async () => {
-  const photos = await prisma.photo.findMany();
+  const photos = await prisma.photo.findMany({
+    include: {
+      characters: true,
+    },
+  });
   return photos;
 };
 
