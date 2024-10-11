@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const { photo } = require('../controllers/controller');
 
 const prisma = new PrismaClient();
 
@@ -127,11 +126,11 @@ const updateRound = async (userId, photoId) => {
 
 // Other queries
 
-const createCharacter = async (character) => {
+const createCharacter = async (c) => {
   const character = await prisma.character.create({
     data: {
-      name: character.name,
-      avatar: character.avatar,
+      name: c.name,
+      avatar: c.avatar,
     },
   });
   return character;
