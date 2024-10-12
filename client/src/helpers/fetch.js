@@ -1,6 +1,6 @@
 const getFetchOptions = (method, body) => {
   return {
-    body: body ? JSON.stringify(body) : {},
+    body: body ? JSON.stringify(body) : null,
     headers: {
       'Content-Type': 'application/json',
     },

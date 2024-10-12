@@ -19,7 +19,7 @@ const loader = async () => {
     url: `${API_URL}/users/${localStorage.getItem('id')}`,
     options: {
       method: 'get',
-      body: {},
+      body: null,
     },
   });
 
@@ -27,7 +27,7 @@ const loader = async () => {
     url: `${API_URL}/photos`,
     options: {
       method: 'get',
-      body: {},
+      body: null,
     },
   });
 
