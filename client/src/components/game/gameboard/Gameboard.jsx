@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Character from '../character/Character';
 
 function Gameboard({ level }) {
   const characters = level.characters;
@@ -8,13 +9,10 @@ function Gameboard({ level }) {
       <div>
         {characters.map((character, index) => {
           return (
-            <div key={`${character.characterId}n${index}`}>
-              <div>{character.character.name}</div>
-              <img
-                src={`../../assets/images/${character.character.avatar}`}
-                alt="Character"
-              />
-            </div>
+            <Character
+              key={`${character.characterId}n${index}`}
+              character={character.character}
+            />
           );
         })}
       </div>
