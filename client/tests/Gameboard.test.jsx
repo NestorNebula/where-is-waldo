@@ -17,15 +17,15 @@ vi.mock('react', async () => {
 beforeEach(() => {
   render(
     <MemoryRouter>
-      <Gameboard />
+      <Gameboard level={fakeContext.levels[0]} />
     </MemoryRouter>
   );
 });
 
 describe('Gameboard', () => {
   it('renders img and characters properly', () => {
-    expect(screen.queryByRole('img', { name: /level image/i })).not.toBeNull();
-    expect(screen.queryAllByAltText(/character/i)).toBe(
+    expect(screen.queryByRole('img', { name: /level/i })).not.toBeNull();
+    expect(screen.queryAllByAltText(/character/i).length).toBe(
       fakeContext.levels[0].characters.length
     );
   });

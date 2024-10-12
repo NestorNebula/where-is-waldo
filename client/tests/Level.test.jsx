@@ -36,6 +36,6 @@ beforeEach(() => {
 
 describe('Level', () => {
   it('renders level without error', () => {
-    expect(screen.queryByRole('img')).not.toBeNull();
+    expect(screen.queryByRole('img', { name: /level/i })).not.toBeNull();
   });
 });
