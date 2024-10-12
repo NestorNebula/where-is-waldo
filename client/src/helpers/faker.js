@@ -34,4 +34,12 @@ const getFakeCharacter = (id) => {
   };
 };
 
-export { getFakeLevel, getFakeCharacterOnLevel, getFakeCharacter };
+const getFakeUser = () => {
+  return {
+    id: faker.string.uuid(),
+    username: faker.person.firstName(),
+    rounds: [],
+  };
+};
+
+export { getFakeLevel, getFakeCharacterOnLevel, getFakeCharacter, getFakeUser };
