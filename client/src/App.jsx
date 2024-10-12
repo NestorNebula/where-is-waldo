@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import { GameContext } from './context/GameContext';
 import Navbar from './components/page/navbar/Navbar';
 import './App.css';
@@ -9,7 +9,9 @@ function App() {
   return (
     <GameContext.Provider value={{ user, levels, API_URL }}>
       <Navbar />
-      <main></main>
+      <main>
+        <Outlet />
+      </main>
     </GameContext.Provider>
   );
 }
