@@ -8,10 +8,9 @@ const fakeContext = mockContext();
 
 vi.mock('react', async () => {
   const actual = await vi.importActual('react');
-  const { mockContext } = await import('./mocks/mocks.js');
   return {
     ...actual,
-    useContext: mockContext,
+    useContext: () => fakeContext,
   };
 });
 
