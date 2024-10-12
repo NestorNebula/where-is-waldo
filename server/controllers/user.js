@@ -8,7 +8,7 @@ const getUser = async (req, res) => {
 };
 
 const postUser = async (req, res) => {
-  const { user } = await prisma.createUser();
+  const user = await prisma.createUser();
   if (!user) return res.sendStatus(500);
   res.status(201).json({ id: user.id });
 };

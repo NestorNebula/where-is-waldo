@@ -13,7 +13,11 @@ const getUser = async (id) => {
 };
 
 const createUser = async () => {
-  const user = await prisma.user.create({});
+  const user = await prisma.user.create({
+    data: {
+      username: null,
+    },
+  });
   return user;
 };
 
