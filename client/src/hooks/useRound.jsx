@@ -28,14 +28,19 @@ const useRound = (user, level) => {
       },
     },
   });
-  fetch.then((status) => {
-    if (status >= 400) {
-      setError('Error when loading round.');
-    } else {
-      setRound('done');
-    }
-    setLoading(false);
-  });
+  fetch
+    .then((status) => {
+      if (status >= 400) {
+        setError('Error when loading round.');
+      } else {
+        setRound('done');
+      }
+      setLoading(false);
+    })
+    .catch((err) => {
+      setError(err);
+      setLoading(false);
+    });
 
   return { round, error, loading };
 };
