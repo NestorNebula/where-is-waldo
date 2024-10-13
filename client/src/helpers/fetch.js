@@ -25,6 +25,14 @@ const promiseFetch = ({ url, options }) => {
     });
 };
 
+const promiseFetchStatus = ({ url, options }) => {
+  return fetch(url, getFetchOptions(options.method, options.body)).then(
+    (response) => {
+      return response.status;
+    }
+  );
+};
+
 const asyncFetch = async ({ url, options }) => {
   const response = await fetch(
     url,
@@ -35,4 +43,4 @@ const asyncFetch = async ({ url, options }) => {
   return result;
 };
 
-export { getFetchOptions, promiseFetch, asyncFetch };
+export { getFetchOptions, promiseFetch, promiseFetchStatus, asyncFetch };
