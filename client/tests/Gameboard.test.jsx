@@ -15,6 +15,18 @@ vi.mock('react', async () => {
   };
 });
 
+vi.mock('../src/hooks/useRound', () => {
+  return {
+    useRound: () => {
+      return {
+        round: [],
+        error: null,
+        loading: false,
+      };
+    },
+  };
+});
+
 beforeEach(() => {
   render(
     <MemoryRouter>
