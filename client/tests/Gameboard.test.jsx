@@ -39,4 +39,13 @@ describe('Gameboard', () => {
       fakeContext.levels[0].characters.length
     );
   });
+
+  it('returns to "normal" after click on character', async () => {
+    const user = userEvent.setup();
+    const image = screen.getByRole('img', { name: /level/i });
+    await user.click(image);
+    const char = screen.getAllByRole('button', { name: /choose/i })[0];
+    await user.click(char);
+    expect(screen.queryAllByRole('button', { name: /choose/i }).length).toBe(0);
+  });
 });
