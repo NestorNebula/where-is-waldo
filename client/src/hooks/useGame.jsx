@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useGame = (characters) => {
-  const [gameState, setGameState] = useState('start');
+  const [gameState, setGameState] = useState('on');
   const [charactersFound, setCharactersFound] = useState(
     getCharactersState(characters)
   );
@@ -19,7 +19,17 @@ const useGame = (characters) => {
     setCharactersFound(updated);
   };
 
-  return { gameState, updateCharactersFound };
+  const handleImageClick = () => {
+    if (gameState !== 'on') return;
+    setGameState('wait');
+  };
+
+  return {
+    gameState,
+    charactersFound,
+    updateCharactersFound,
+    handleImageClick,
+  };
 };
 
 const getCharactersState = (characters) => {
