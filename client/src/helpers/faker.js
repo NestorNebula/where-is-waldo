@@ -42,4 +42,20 @@ const getFakeUser = () => {
   };
 };
 
-export { getFakeLevel, getFakeCharacterOnLevel, getFakeCharacter, getFakeUser };
+const getFakeRound = (userId = 1, photoId = 1) => {
+  return {
+    userId,
+    photoId,
+    startTime: new Date(Date.now()),
+    endTime: null,
+    score: null,
+  };
+};
+
+export {
+  getFakeLevel,
+  getFakeCharacterOnLevel,
+  getFakeCharacter,
+  getFakeUser,
+  getFakeRound,
+};
