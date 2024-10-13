@@ -19,7 +19,7 @@ const getFakeCharacterOnLevel = (levelId) => {
   const characterId = faker.number.int({ max: 100 });
   return {
     characterId,
-    coordinates: {},
+    coordinates: getFakeCoordinates(),
     photoId: levelId,
     character: getFakeCharacter(characterId),
   };
@@ -52,10 +52,22 @@ const getFakeRound = (userId = 1, photoId = 1) => {
   };
 };
 
+const getFakeCoordinates = () => {
+  const minX = faker.number.int({ max: 99 });
+  const minY = faker.number.int({ max: 99 });
+  return {
+    minX,
+    maxX: minX + 1,
+    minY,
+    maxY: minY + 1,
+  };
+};
+
 export {
   getFakeLevel,
   getFakeCharacterOnLevel,
   getFakeCharacter,
   getFakeUser,
   getFakeRound,
+  getFakeCoordinates,
 };
