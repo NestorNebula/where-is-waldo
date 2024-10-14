@@ -19,32 +19,37 @@ describe('handleImageClick', () => {
 });
 
 describe('handleCharacterClick', () => {
-  const { result } = renderHook(() => {
-    return useGame(level.characters);
-  });
-
-  it('set state back to on after image click', () => {
+  it('set state back to on after image click & handles wrong click', () => {
+    const { result } = renderHook(() => {
+      return useGame(level.characters);
+    });
     const fakeCoordinates = getFakeCoordinates();
     act(() => {
       result.current.handleImageClick({
         offsetX: fakeCoordinates.minX,
         offsetY: fakeCoordinates.maxY,
       });
+    });
+    console.log(result.current.gameState);
+
+    act(() => {
       result.current.handleCharacterClick(level.characters[0].characterId);
     });
     expect(result.current.gameState).toBe('on');
-  });
-
-  it('handles wrong click', () => {
     expect(result.current.charactersFound[0].found).toBeFalsy();
   });
 
   it('handles correct click', () => {
+    const { result } = renderHook(() => {
+      return useGame(level.characters);
+    });
     act(() => {
       result.current.handleImageClick({
         offsetX: level.characters[0].coordinates.minX + 0.5,
         offsetY: level.characters[0].coordinates.minY + 0.5,
       });
+    });
+    act(() => {
       result.current.handleCharacterClick(level.characters[0].characterId);
     });
     expect(result.current.charactersFound[0].found).toBeTruthy();
