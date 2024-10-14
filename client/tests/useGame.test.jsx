@@ -30,7 +30,6 @@ describe('handleCharacterClick', () => {
         offsetY: fakeCoordinates.maxY,
       });
     });
-    console.log(result.current.gameState);
 
     act(() => {
       result.current.handleCharacterClick(level.characters[0].characterId);
@@ -53,5 +52,23 @@ describe('handleCharacterClick', () => {
       result.current.handleCharacterClick(level.characters[0].characterId);
     });
     expect(result.current.charactersFound[0].found).toBeTruthy();
+  });
+
+  it('set state to "over" after all characters have been found', () => {
+    const { result } = renderHook(() => {
+      return useGame(level.characters);
+    });
+    for (let i = 0; i < level.characters.length; i++) {
+      act(() => {
+        result.current.handleImageClick({
+          offsetX: level.characters[i].coordinates.minX + 0.5,
+          offsetY: level.characters[i].coordinates.minY + 0.5,
+        });
+      });
+      act(() => {
+        result.current.handleCharacterClick(level.characters[i].characterId);
+      });
+    }
+    expect(result.current.gameState).toBe('over');
   });
 });
