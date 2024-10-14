@@ -51,12 +51,12 @@ describe('Gameboard', () => {
 
   it('displays form at the end of the game', () => {
     vi.doMock('../src/hooks/useGame', async () => {
-      const actual = vi.importActual('../src/hooks/useGame');
+      const actual = await vi.importActual('../src/hooks/useGame');
       return {
         ...actual,
         gameState: 'over',
       };
     });
-    expect(screen.queryByRole('form')).not.toBeNull();
+    expect(screen.queryByRole('form', { name: /username/i })).not.toBeNull();
   });
 });
