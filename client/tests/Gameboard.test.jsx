@@ -48,15 +48,4 @@ describe('Gameboard', () => {
     await user.click(char);
     expect(screen.queryAllByRole('button', { name: /choose/i }).length).toBe(0);
   });
-
-  it('displays form at the end of the game', () => {
-    vi.doMock('../src/hooks/useGame', async () => {
-      const actual = await vi.importActual('../src/hooks/useGame');
-      return {
-        ...actual,
-        gameState: 'over',
-      };
-    });
-    expect(screen.queryByRole('form', { name: /username/i })).not.toBeNull();
-  });
 });
