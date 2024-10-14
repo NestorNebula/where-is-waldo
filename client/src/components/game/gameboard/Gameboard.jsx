@@ -3,6 +3,7 @@ import { useRound } from '../../../hooks/useRound';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { useGame } from '../../../hooks/useGame';
+import { useInput } from '../../../hooks/useInput';
 import PropTypes from 'prop-types';
 import Character from '../character/Character';
 
@@ -18,6 +19,20 @@ function Gameboard({ level }) {
   const characters = level.characters;
   const { gameState, charactersFound, handleImageClick, handleCharacterClick } =
     useGame(characters);
+
+  const usernameValidation = (username) => {
+    let message = '';
+    if (username.length < 3) {
+      message += 'Username must have at least 3 characters.';
+    }
+    const regex = new RegExp('^[A-Z][A-Z0-9-_.@]*[A-Z]$', 'i');
+    const match = regex.test(username);
+    if (!match)
+      message +=
+        'Username must start/end with a letter and can only contain letters, numbers, dashes and points.';
+    return message;
+  };
+  const { value, updateValue, validation } = useInput(usernameValidation);
 
   return (
     <>
@@ -45,6 +60,21 @@ function Gameboard({ level }) {
               );
             })}
           </div>
+          {gameState === 'over' ? (
+            <form aria-label="Submit Username">
+              <div>
+                <label htmlFor="username">Input</label>
+                <input
+                  id="username"
+                  name="username"
+                  value={value}
+                  onChange={updateValue}
+                />
+                <span>{validation.isValid ? null : validation.message}</span>
+              </div>
+              <button type="button">Submit</button>
+            </form>
+          ) : null}
         </>
       )}
     </>
