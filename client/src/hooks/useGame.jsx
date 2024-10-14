@@ -2,6 +2,17 @@ import { useState } from 'react';
 
 const useGame = (characters) => {
   const [gameState, setGameState] = useState('on');
+  const checkGameOver = (charFounds) => {
+    if (
+      charFounds.every((character) => {
+        return character.found === true;
+      }) === true
+    ) {
+      setGameState('over');
+      return true;
+    }
+    return false;
+  };
   const [charactersFound, setCharactersFound] = useState(
     getCharactersState(characters)
   );
@@ -17,6 +28,7 @@ const useGame = (characters) => {
       }
     });
     setCharactersFound(updated);
+    return updated;
   };
 
   const [coordinates, setCoordinates] = useState(null);
@@ -27,6 +39,7 @@ const useGame = (characters) => {
   };
 
   const handleCharacterClick = (characterId) => {
+    let result = false;
     const character = characters.find(
       (char) => char.characterId === characterId
     );
@@ -37,11 +50,12 @@ const useGame = (characters) => {
         character.coordinates.minY <= coordinates.y &&
         character.coordinates.maxY >= coordinates.y
       ) {
-        updateCharactersFound(characterId);
+        const updated = updateCharactersFound(characterId);
+        result = checkGameOver(updated);
       }
     }
     setCoordinates(null);
-    setGameState('on');
+    !result && gameState !== 'over' ? setGameState('on') : null;
   };
 
   return {
