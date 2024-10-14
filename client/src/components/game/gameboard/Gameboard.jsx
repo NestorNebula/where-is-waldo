@@ -16,12 +16,8 @@ function Gameboard({ level }) {
   }
 
   const characters = level.characters;
-  const {
-    gameState,
-    charactersFound,
-    updateCharactersFound,
-    handleImageClick,
-  } = useGame(characters);
+  const { gameState, charactersFound, handleImageClick, handleCharacterClick } =
+    useGame(characters);
 
   return (
     <>
@@ -44,7 +40,7 @@ function Gameboard({ level }) {
                   character={character.character}
                   characterStatus={charactersFound[index]}
                   gameStatus={gameState}
-                  update={updateCharactersFound}
+                  onClick={handleCharacterClick}
                 />
               );
             })}

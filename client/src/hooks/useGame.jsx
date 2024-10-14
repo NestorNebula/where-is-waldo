@@ -19,16 +19,36 @@ const useGame = (characters) => {
     setCharactersFound(updated);
   };
 
-  const handleImageClick = () => {
+  const [coordinates, setCoordinates] = useState(null);
+  const handleImageClick = (e) => {
     if (gameState !== 'on') return;
+    setCoordinates({ x: e.offsetX, y: e.offsetY });
     setGameState('wait');
+  };
+
+  const handleCharacterClick = (characterId) => {
+    const character = characters.find(
+      (char) => char.characterId === characterId
+    );
+    if (character && coordinates !== null) {
+      if (
+        character.coordinates.minX <= coordinates.x &&
+        character.coordinates.maxX >= coordinates.x &&
+        character.coordinates.minY <= coordinates.y &&
+        character.coordinates.maxY >= coordinates.y
+      ) {
+        updateCharactersFound(characterId);
+      }
+    }
+    setCoordinates(null);
+    setGameState('on');
   };
 
   return {
     gameState,
     charactersFound,
-    updateCharactersFound,
     handleImageClick,
+    handleCharacterClick,
   };
 };
 

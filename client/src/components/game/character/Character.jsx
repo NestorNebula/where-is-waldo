@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function Character({ character, gameStatus }) {
+function Character({ character, gameStatus, onClick }) {
   return (
     <>
       {gameStatus !== 'wait' ? (
@@ -12,7 +12,7 @@ function Character({ character, gameStatus }) {
           />
         </div>
       ) : (
-        <button aria-label="Choose character">
+        <button aria-label="Choose character" onClick={onClick}>
           <div>{character.name}</div>
           <img
             src={`../../assets/images/${character.avatar}`}
@@ -27,6 +27,7 @@ function Character({ character, gameStatus }) {
 Character.propTypes = {
   character: PropTypes.object.isRequired,
   gameStatus: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Character;
