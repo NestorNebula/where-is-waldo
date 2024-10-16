@@ -23,7 +23,7 @@ jest.mock('../models/queries', () => {
     },
     createUser: () => {
       return {
-        user: mockUser,
+        id: mockUser.id,
       };
     },
     updateUser: (userId, username) => {

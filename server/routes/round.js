@@ -3,6 +3,6 @@ const router = Router();
 const controller = require('../controllers/controller').round;
 
 router.post('/', controller.postRound);
-router.put('/:roundId', controller.updateRound);
+router.put('/', controller.updateRound);
 
 module.exports = router;

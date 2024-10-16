@@ -58,7 +58,7 @@ describe('/POST round route', () => {
 describe('/PUT round route', () => {
   it("'restarts' Round when already over", () => {
     return request(app)
-      .put(`/${mockRound.id}`)
+      .put('/')
       .send({ userId: mockRound.userId, photoId: mockRound.photoId })
       .type('form')
       .then((res) => {
@@ -69,7 +69,7 @@ describe('/PUT round route', () => {
 
   it('set result when Round is over', () => {
     return request(app)
-      .put(`/${mockOngoingRound.id}`)
+      .put('/')
       .send({
         userId: mockOngoingRound.userId,
         photoId: mockOngoingRound.photoId,
