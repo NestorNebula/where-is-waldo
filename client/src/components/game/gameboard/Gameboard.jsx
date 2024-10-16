@@ -5,6 +5,7 @@ import { GameContext } from '../../../context/GameContext';
 import { useGame } from '../../../hooks/useGame';
 import { useInput } from '../../../hooks/useInput';
 import { useSaveRound } from '../../../hooks/useSaveRound';
+import { useSendForm } from '../../../hooks/useSendForm';
 import PropTypes from 'prop-types';
 import Character from '../character/Character';
 
@@ -42,6 +43,11 @@ function Gameboard({ level }) {
     user,
   });
   if (gameState === 'over' && !savedRound) sendResult();
+  const { formSent, sendForm } = useSendForm({
+    user,
+    username: value,
+    API_URL,
+  });
 
   return (
     <>
@@ -69,11 +75,11 @@ function Gameboard({ level }) {
               );
             })}
           </div>
-          {gameState === 'over'
+          {gameState === 'over' && !formSent
             ? !user.username && (
-                <form aria-label="Submit Username">
+                <form aria-label="Submit Username" onSubmit={sendForm}>
                   <div>
-                    <label htmlFor="username">Input</label>
+                    <label htmlFor="username">Username</label>
                     <input
                       id="username"
                       name="username"
@@ -84,7 +90,7 @@ function Gameboard({ level }) {
                       {validation.isValid ? null : validation.message}
                     </span>
                   </div>
-                  <button type="button">Submit</button>
+                  <button>Submit</button>
                 </form>
               )
             : null}
