@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { mockContext } from './mocks/mocks';
 import { getFakeOverRound } from '../src/helpers/faker';
@@ -47,13 +48,25 @@ vi.mock('../src/hooks/useSaveRound', () => {
   };
 });
 
+beforeEach(() => {
+  render(
+    <MemoryRouter>
+      <Gameboard level={fakeContext.levels[0]} />
+    </MemoryRouter>
+  );
+});
+
 describe('Gameboard Form', () => {
   it('renders form when game state is "over"', () => {
-    render(
-      <MemoryRouter>
-        <Gameboard level={fakeContext.levels[0]} />
-      </MemoryRouter>
-    );
     expect(screen.queryByRole('form', { name: /username/i })).not.toBeNull();
+  });
+
+  it('removes form after sending it', async () => {
+    const user = userEvent.setup();
+    const input = screen.getByLabelText(/username/i);
+    const submitBtn = screen.getByRole('button', { name: /submit/i });
+    await user.type(input, 'username');
+    await user.click(submitBtn);
+    expect(screen.queryByRole('form', { name: /username/i })).toBeNull();
   });
 });
