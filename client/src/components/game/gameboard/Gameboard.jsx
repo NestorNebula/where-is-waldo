@@ -41,6 +41,7 @@ function Gameboard({ level }) {
     round,
     user,
   });
+  if (gameState === 'over' && !savedRound) sendResult();
 
   return (
     <>
@@ -89,8 +90,6 @@ function Gameboard({ level }) {
             : null}
           {gameState === 'over' && savedRound ? (
             <div>Your saved score is {savedRound.score}!</div>
-          ) : gameState === 'over' ? (
-            () => sendResult()
           ) : null}
         </>
       )}
