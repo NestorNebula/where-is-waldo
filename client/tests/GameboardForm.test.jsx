@@ -36,6 +36,17 @@ vi.mock('../src/helpers/fetch', () => {
   };
 });
 
+vi.mock('../src/hooks/useSaveRound', () => {
+  return {
+    useSaveRound: () => {
+      return {
+        savedRound: {},
+        sendResult: () => {},
+      };
+    },
+  };
+});
+
 describe('Gameboard Form', () => {
   it('renders form when game state is "over"', () => {
     render(
