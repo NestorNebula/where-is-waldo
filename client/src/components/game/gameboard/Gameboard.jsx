@@ -1,10 +1,10 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useRound } from '../../../hooks/useRound';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { useGame } from '../../../hooks/useGame';
 import { useInput } from '../../../hooks/useInput';
-import { asyncFetch } from '../../../helpers/fetch';
+import { useSaveRound } from '../../../hooks/useSaveRound';
 import PropTypes from 'prop-types';
 import Character from '../character/Character';
 
@@ -35,29 +35,12 @@ function Gameboard({ level }) {
   };
   const { value, updateValue, validation } = useInput(usernameValidation);
 
-  const [savedRound, setSavedRound] = useState(null);
-  const sendResult = async () => {
-    if (savedRound) return;
-    const existingRound = user.rounds.some((round) => {
-      return round.photoId === level.id && round.endTime;
-    });
-    if (existingRound) {
-      setSavedRound(existingRound);
-      return;
-    }
-    const updatedRound = await asyncFetch({
-      url: `${API_URL}/rounds`,
-      options: {
-        method: 'put',
-        body: {
-          userId: round.userId,
-          photoId: round.photoId,
-          endTime: new Date(Date.now()),
-        },
-      },
-    });
-    setSavedRound(updatedRound);
-  };
+  const { savedRound, sendResult } = useSaveRound({
+    API_URL,
+    level,
+    round,
+    user,
+  });
 
   return (
     <>
