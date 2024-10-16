@@ -48,6 +48,21 @@ vi.mock('../src/hooks/useSaveRound', () => {
   };
 });
 
+vi.mock('../src/hooks/useSendForm', () => {
+  return {
+    useSendForm: () => {
+      let formSent = false;
+      return {
+        formSent,
+        sendForm: (e) => {
+          e.preventDefault();
+          formSent = true;
+        },
+      };
+    },
+  };
+});
+
 beforeEach(() => {
   render(
     <MemoryRouter>
