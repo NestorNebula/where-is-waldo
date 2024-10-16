@@ -1,8 +1,12 @@
-import { getFakeLevel, getFakeUser } from '../../src/helpers/faker';
+import {
+  getFakeLevel,
+  getFakeUser,
+  getFakeAnonymousUser,
+} from '../../src/helpers/faker';
 
-const mockContext = () => {
+const mockContext = (anonymous) => {
   return {
-    user: getFakeUser(),
+    user: anonymous ? getFakeAnonymousUser() : getFakeUser(),
     levels: [getFakeLevel(), getFakeLevel(), getFakeLevel()],
     API_URL: null,
   };

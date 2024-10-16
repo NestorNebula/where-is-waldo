@@ -2,9 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { mockContext } from './mocks/mocks';
+import { getFakeOverRound } from '../src/helpers/faker';
 import Gameboard from '../src/components/game/gameboard/Gameboard';
 
-const fakeContext = mockContext();
+const fakeContext = mockContext(true);
 
 vi.mock('react', async () => {
   const actual = await vi.importActual('react');
@@ -23,6 +24,14 @@ vi.mock('../src/hooks/useGame', () => {
         handleImageClick: () => {},
         handleCharacterClick: () => {},
       };
+    },
+  };
+});
+
+vi.mock('../src/helpers/fetch', () => {
+  return {
+    asyncFetch: ({ options }) => {
+      return getFakeOverRound(options.body.userId, options.body.photoId);
     },
   };
 });

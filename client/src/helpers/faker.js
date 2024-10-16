@@ -42,6 +42,14 @@ const getFakeUser = () => {
   };
 };
 
+const getFakeAnonymousUser = () => {
+  return {
+    id: faker.string.uuid(),
+    username: null,
+    rounds: [],
+  };
+};
+
 const getFakeRound = (userId = 1, photoId = 1) => {
   return {
     userId,
@@ -49,6 +57,18 @@ const getFakeRound = (userId = 1, photoId = 1) => {
     startTime: new Date(Date.now()),
     endTime: null,
     score: null,
+  };
+};
+
+const getFakeOverRound = (userId = 1, photoId = 1) => {
+  const startTime = faker.date.recent();
+  const endTime = new Date(Date.now());
+  return {
+    userId,
+    photoId,
+    startTime,
+    endTime,
+    score: endTime - startTime,
   };
 };
 
@@ -68,6 +88,8 @@ export {
   getFakeCharacterOnLevel,
   getFakeCharacter,
   getFakeUser,
+  getFakeAnonymousUser,
   getFakeRound,
+  getFakeOverRound,
   getFakeCoordinates,
 };
