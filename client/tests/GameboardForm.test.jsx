@@ -63,7 +63,7 @@ describe('Gameboard Form', () => {
 
   it('removes form after sending it', async () => {
     const user = userEvent.setup();
-    const input = screen.getByLabelText(/username/i);
+    const input = screen.getByRole('textbox', { name: /username/i });
     const submitBtn = screen.getByRole('button', { name: /submit/i });
     await user.type(input, 'username');
     await user.click(submitBtn);
