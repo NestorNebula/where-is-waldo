@@ -60,9 +60,12 @@ describe('handleCharacterClick', () => {
     });
     for (let i = 0; i < level.characters.length; i++) {
       act(() => {
+        let coordinates = level.characters[i].coordinates;
+        if (typeof coordinates === 'string')
+          coordinates = JSON.parse(coordinates);
         result.current.handleImageClick({
-          offsetX: level.characters[i].coordinates.minX + 0.5,
-          offsetY: level.characters[i].coordinates.minY + 0.5,
+          offsetX: coordinates.minX,
+          offsetY: coordinates.minY,
         });
       });
       act(() => {
