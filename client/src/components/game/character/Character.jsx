@@ -14,7 +14,7 @@ function Character({
         <div>
           <div>{character.name}</div>
           <img
-            src={`../../assets/images/${character.avatar}`}
+            src={`../src/assets/images/${character.avatar}`}
             alt="Character"
           />
         </div>
@@ -22,7 +22,7 @@ function Character({
         <button aria-label="Choose character" onClick={onClick}>
           <div>{character.name}</div>
           <img
-            src={`../../assets/images/${character.avatar}`}
+            src={`../src/assets/images/${character.avatar}`}
             alt="Character"
           />
         </button>

@@ -59,7 +59,7 @@ function Gameboard({ level }) {
         <>
           <img
             onClick={handleImageClick}
-            src={`../../assets/images/${level.title}`}
+            src={`../src/assets/images/${level.title}`}
             alt="Level"
           />
           <div>
@@ -70,7 +70,7 @@ function Gameboard({ level }) {
                   character={character.character}
                   characterStatus={charactersFound[index]}
                   gameStatus={gameState}
-                  coordinates={character.coordinates}
+                  coordinates={JSON.parse(character.coordinates)}
                   onClick={handleCharacterClick}
                 />
               );
