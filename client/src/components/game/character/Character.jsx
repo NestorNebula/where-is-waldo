@@ -19,7 +19,11 @@ function Character({
           />
         </div>
       ) : (
-        <button aria-label="Choose character" onClick={onClick}>
+        <button
+          disabled={characterStatus.found}
+          aria-label="Choose character"
+          onClick={() => onClick(character.id)}
+        >
           <div>{character.name}</div>
           <img
             src={`../src/assets/images/${character.avatar}`}
