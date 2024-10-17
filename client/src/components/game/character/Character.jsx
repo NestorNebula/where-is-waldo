@@ -1,6 +1,13 @@
 import PropTypes from 'prop-types';
+import Marker from '../marker/Marker';
 
-function Character({ character, gameStatus, onClick }) {
+function Character({
+  character,
+  characterStatus,
+  gameStatus,
+  coordinates,
+  onClick,
+}) {
   return (
     <>
       {gameStatus !== 'wait' ? (
@@ -20,13 +27,20 @@ function Character({ character, gameStatus, onClick }) {
           />
         </button>
       )}
+      <Marker
+        coordinates={
+          characterStatus && characterStatus.found ? coordinates : null
+        }
+      />
     </>
   );
 }
 
 Character.propTypes = {
   character: PropTypes.object.isRequired,
+  characterStatus: PropTypes.object.isRequired,
   gameStatus: PropTypes.string.isRequired,
+  coordinates: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

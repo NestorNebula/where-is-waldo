@@ -70,6 +70,7 @@ function Gameboard({ level }) {
                   character={character.character}
                   characterStatus={charactersFound[index]}
                   gameStatus={gameState}
+                  coordinates={character.coordinates}
                   onClick={handleCharacterClick}
                 />
               );
