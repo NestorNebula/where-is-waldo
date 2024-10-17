@@ -1,5 +1,6 @@
 import App from '../App';
 import Homepage from '../components/page/homepage/Homepage';
+import Level from '../components/game/level/Level';
 import loader from '../helpers/loader';
 
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: '/levels/:levelId',
+        element: <Level />,
       },
     ],
   },
