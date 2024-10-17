@@ -44,6 +44,9 @@ const useGame = (characters) => {
       (char) => char.characterId === characterId
     );
     if (character && coordinates !== null) {
+      if (typeof character.coordinates === 'string') {
+        character.coordinates = JSON.parse(character.coordinates);
+      }
       if (
         character.coordinates.minX <= coordinates.x &&
         character.coordinates.maxX >= coordinates.x &&

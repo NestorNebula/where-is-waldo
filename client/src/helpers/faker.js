@@ -19,7 +19,7 @@ const getFakeCharacterOnLevel = (levelId) => {
   const characterId = faker.number.int({ max: 100 });
   return {
     characterId,
-    coordinates: getFakeCoordinates(),
+    coordinates: JSON.stringify(getFakeCoordinates()),
     photoId: levelId,
     character: getFakeCharacter(characterId),
   };
