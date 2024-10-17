@@ -9,8 +9,10 @@ const useRound = (user, level) => {
 
   const existingRound = user.rounds.find((r) => r.photoId === level.id);
   if (existingRound) {
-    setRound(existingRound);
-    setLoading(false);
+    if (loading || !round) {
+      setRound(existingRound);
+      setLoading(false);
+    }
     return {
       round,
       error,
