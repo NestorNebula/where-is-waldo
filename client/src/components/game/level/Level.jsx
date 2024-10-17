@@ -9,7 +9,7 @@ function Level() {
   const { levelId } = useParams();
 
   useEffect(() => {
-    setLevel(levels.find((lvl) => lvl.id === levelId));
+    setLevel(levels.find((lvl) => lvl.id === +levelId));
   }, [levels, levelId]);
 
   return (
