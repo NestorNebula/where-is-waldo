@@ -1,7 +1,7 @@
 const prisma = require('../models/queries');
 
 const postRound = async (req, res) => {
-  const user = await prisma.getUser(+req.body.userId);
+  const user = await prisma.getUser(req.body.userId);
   const photo = await prisma.getPhoto(+req.body.photoId);
   if (!user || !photo) return res.sendStatus(400);
   await prisma.createRound(user.id, photo.id);
