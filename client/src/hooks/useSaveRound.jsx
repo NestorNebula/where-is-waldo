@@ -5,7 +5,7 @@ const useSaveRound = ({ API_URL, level, round, user }) => {
   const [savedRound, setSavedRound] = useState(null);
   const sendResult = async () => {
     if (savedRound) return;
-    const existingRound = user.rounds.some((round) => {
+    const existingRound = user.rounds.find((round) => {
       return round.photoId === level.id && round.endTime;
     });
     if (existingRound) {
