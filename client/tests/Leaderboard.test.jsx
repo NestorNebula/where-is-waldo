@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
@@ -31,7 +31,7 @@ vi.mock('../src/hooks/useLeaderboard', () => {
   };
 });
 
-beforeAll(() => {
+beforeEach(() => {
   render(
     <MemoryRouter>
       <Leaderboard />
@@ -52,10 +52,14 @@ describe('Leaderboard', () => {
     const user = userEvent.setup();
     const navButton = screen.queryByRole('button', { name: /next/ });
     await user.click(navButton);
-    expect(screen.queryAllByAltText(/seconds/).length).toBe(2);
+    await user.click(navButton);
+    expect(screen.getAllByText(/seconds/).length).toBe(2);
   });
 
-  it("displays user's score differently", () => {
+  it("displays user's score differently", async () => {
+    const user = userEvent.setup();
+    const navButton = screen.queryByRole('button', { name: /next/ });
+    await user.click(navButton);
     expect(screen.queryByText('You')).not.toBeNull();
   });
 });
