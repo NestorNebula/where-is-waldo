@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { useRound } from '../../../hooks/useRound';
-import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { useGame } from '../../../hooks/useGame';
 import { useInput } from '../../../hooks/useInput';
@@ -11,12 +10,8 @@ import Character from '../character/Character';
 
 function Gameboard({ level }) {
   const { user, API_URL } = useContext(GameContext);
-  const navigate = useNavigate();
 
   const { round, error, loading } = useRound(user, level);
-  if (round === 'done') {
-    navigate('.', { replace: true });
-  }
 
   const characters = level.characters;
   const { gameState, charactersFound, handleImageClick, handleCharacterClick } =
