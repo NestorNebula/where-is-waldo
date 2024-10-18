@@ -57,6 +57,7 @@ const getFakeRound = (userId = 1, photoId = 1) => {
     startTime: new Date(Date.now()),
     endTime: null,
     score: null,
+    user: getFakeUser(),
   };
 };
 
@@ -69,6 +70,7 @@ const getFakeOverRound = (userId = 1, photoId = 1) => {
     startTime,
     endTime,
     score: endTime - startTime,
+    user: getFakeUser(),
   };
 };
 
