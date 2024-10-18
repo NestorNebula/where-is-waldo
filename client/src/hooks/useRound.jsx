@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { promiseFetchStatus } from '../helpers/fetch';
+import { useEffect, useState } from 'react';
+import { promiseFetch } from '../helpers/fetch';
 const API_URL = import.meta.env.VITE_API_URL;
 
 const useRound = (user, level) => {
@@ -7,44 +7,26 @@ const useRound = (user, level) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const existingRound = user.rounds.find((r) => r.photoId === level.id);
-  if (existingRound) {
-    if (loading || !round) {
-      setRound(existingRound);
-      setLoading(false);
-    }
-    return {
-      round,
-      error,
-      loading,
-    };
-  }
-
-  const fetch = promiseFetchStatus({
-    url: `${API_URL}/rounds`,
-    options: {
-      method: 'post',
-      body: {
-        userId: user.id,
-        photoId: level.id,
-      },
-    },
-  });
-  fetch
-    .then((status) => {
-      if (status >= 400) {
-        setError('Error when loading round.');
+  useEffect(() => {
+    promiseFetch({
+      url: `${API_URL}/users/${user.id}`,
+      options: { method: 'get', body: null },
+    }).then((actualUser) => {
+      const actualRound = actualUser.rounds.find((r) => r.photoId === level.id);
+      if (!actualRound) {
+        setError("Round couldn't be found.");
       } else {
-        setRound('done');
+        setRound(actualRound);
       }
       setLoading(false);
-    })
-    .catch((err) => {
-      setError(err);
-      setLoading(false);
     });
+  }, [user, level]);
 
-  return { round, error, loading };
+  return {
+    round,
+    error,
+    loading,
+  };
 };
 
 export { useRound };
