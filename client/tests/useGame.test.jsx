@@ -4,6 +4,7 @@ import { useGame } from '../src/hooks/useGame';
 import { getFakeLevel, getFakeCoordinates } from '../src/helpers/faker';
 
 const level = getFakeLevel();
+const fakeCoordinates = getFakeCoordinates();
 
 describe('handleImageClick', () => {
   it('set state to wait', () => {
@@ -12,7 +13,10 @@ describe('handleImageClick', () => {
     });
     expect(result.current.gameState).toBe('on');
     act(() => {
-      result.current.handleImageClick({});
+      result.current.handleImageClick({
+        offsetX: fakeCoordinates.maxX,
+        offsetY: fakeCoordinates.minY,
+      });
     });
     expect(result.current.gameState).toBe('wait');
   });
@@ -23,7 +27,6 @@ describe('handleCharacterClick', () => {
     const { result } = renderHook(() => {
       return useGame(level.characters);
     });
-    const fakeCoordinates = getFakeCoordinates();
     act(() => {
       result.current.handleImageClick({
         offsetX: fakeCoordinates.minX,
