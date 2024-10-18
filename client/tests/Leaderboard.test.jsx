@@ -21,13 +21,11 @@ vi.mock('react', async () => {
   };
 });
 
-vi.mock('reac-router-dom', async () => {
-  const actual = await vi.importActual('react-router-dom');
+vi.mock('../src/hooks/useLeaderboard', () => {
   return {
-    ...actual,
-    useLoaderData: () => {
+    useLeaderboard: () => {
       return {
-        rounds: fakeRounds,
+        roundsLb: fakeRounds,
       };
     },
   };
