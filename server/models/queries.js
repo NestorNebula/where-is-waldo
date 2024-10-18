@@ -88,6 +88,7 @@ const getRound = async (userId, photoId) => {
 const getPhotoBestRounds = async (photoId, limit = 100) => {
   const rounds = await prisma.round.findMany({
     where: { photoId },
+    include: { user: true },
     orderBy: { score: { sort: 'asc', nulls: 'last' } },
     take: limit,
   });
