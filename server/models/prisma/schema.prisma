@@ -44,7 +44,7 @@ model Round {
   photoId   Int
   startTime DateTime  @default(now())
   endTime   DateTime?
-  score     BigInt?
+  score     Int?
 
   @@id([userId, photoId])
 }
