@@ -28,6 +28,8 @@ describe('Homepage', () => {
   });
 
   it('renders levels', () => {
-    expect(screen.getAllByRole('link').length).toBe(fakeContext.levels.length);
+    expect(screen.getAllByRole('button', { name: /level/i }).length).toBe(
+      fakeContext.levels.length
+    );
   });
 });
