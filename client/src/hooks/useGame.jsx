@@ -34,7 +34,16 @@ const useGame = (characters) => {
   const [coordinates, setCoordinates] = useState(null);
   const handleImageClick = (e) => {
     if (gameState !== 'on') return;
-    setCoordinates({ x: e.offsetX, y: e.offsetY });
+    if (e.nativeEvent) {
+      setCoordinates({
+        x: getClickPercentage(e.nativeEvent.offsetX, e.target.width),
+        y: getClickPercentage(e.nativeEvent.offsetY, e.target.height),
+      });
+    } else if (e.offsetX) {
+      setCoordinates({ x: e.offsetX, y: e.offsetY });
+    } else {
+      return;
+    }
     setGameState('wait');
   };
 
@@ -76,6 +85,10 @@ const getCharactersState = (characters) => {
       found: false,
     };
   });
+};
+
+const getClickPercentage = (value, max) => {
+  return (value * 100) / max;
 };
 
 export { useGame };
