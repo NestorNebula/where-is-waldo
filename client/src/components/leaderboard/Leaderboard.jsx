@@ -1,14 +1,7 @@
 import { useContext, useState } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { useLeaderboard } from '../../hooks/useLeaderboard';
-import {
-  millisecondsToHours,
-  hoursToMilliseconds,
-  millisecondsToMinutes,
-  minutesToMilliseconds,
-  millisecondsToSeconds,
-  secondsToMilliseconds,
-} from 'date-fns';
+import { getTimedScore } from '../../helpers/time';
 
 function Leaderboard() {
   const { user, levels } = useContext(GameContext);
@@ -24,21 +17,6 @@ function Leaderboard() {
         displayedLevel + 1 < roundsLb.length ? displayedLevel + 1 : 0
       );
     }
-  };
-
-  const getTimedScore = (score) => {
-    let scoreToConvert = score;
-    const hours = millisecondsToHours(scoreToConvert);
-    scoreToConvert -= hoursToMilliseconds(hours);
-    const minutes = millisecondsToMinutes(scoreToConvert);
-    scoreToConvert -= minutesToMilliseconds(minutes);
-    const seconds = millisecondsToSeconds(scoreToConvert);
-    scoreToConvert -= secondsToMilliseconds(seconds);
-    return hours
-      ? `${hours}h ${minutes}min ${seconds}seconds`
-      : minutes
-      ? `${minutes}min ${seconds}seconds`
-      : `${seconds}seconds ${scoreToConvert}`;
   };
 
   return (
