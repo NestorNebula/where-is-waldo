@@ -1,6 +1,7 @@
 import App from '../App';
 import Homepage from '../components/page/homepage/Homepage';
 import Level from '../components/game/level/Level';
+import Leaderboard from '../components/leaderboard/Leaderboard';
 import loader from '../helpers/loader';
 
 const routes = [
@@ -16,6 +17,10 @@ const routes = [
       {
         path: '/levels/:levelId',
         element: <Level />,
+      },
+      {
+        path: '/leaderboard',
+        element: <Leaderboard />,
       },
     ],
   },
