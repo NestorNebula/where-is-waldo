@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { GameContext } from '../../../context/GameContext';
 import { useParams } from 'react-router-dom';
 import Gameboard from '../gameboard/Gameboard';
+import styles from './Level.module.css';
 
 function Level() {
   const [level, setLevel] = useState(null);
@@ -16,15 +17,17 @@ function Level() {
     <>
       {level ? (
         <>
-          <header>{`Level ${level.id}`}</header>
-          <section>
+          <header className={styles.header}>{`Level ${level.id}`}</header>
+          <section className={styles.section}>
             <Gameboard level={level} />
           </section>
         </>
       ) : (
         <>
-          <header>Error</header>
-          <section>{"The level doesn't exist."}</section>
+          <header className={styles.errorHeader}>Error</header>
+          <section className={styles.errorSection}>
+            {"The level doesn't exist."}
+          </section>
         </>
       )}
     </>
