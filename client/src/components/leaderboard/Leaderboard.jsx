@@ -58,7 +58,7 @@ function Leaderboard() {
                 aria-label="previous level"
                 onClick={() => updateDisplayedLevel('left')}
               ></button>
-              <div>Level {levels[0].id}</div>
+              <div>Level {levels[displayedLevel].id}</div>
               <button
                 aria-label="next level"
                 onClick={() => updateDisplayedLevel('right')}
