@@ -16,7 +16,7 @@ const useLeaderboard = (levels) => {
       });
       if (!round || !round.rounds)
         return setError('Error when loading rounds.');
-      results.push(round);
+      results.push(round.rounds);
     }
     setRoundsLb(results);
     setLoading(false);
