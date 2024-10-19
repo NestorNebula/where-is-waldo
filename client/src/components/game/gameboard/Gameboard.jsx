@@ -5,6 +5,7 @@ import { useGame } from '../../../hooks/useGame';
 import { useInput } from '../../../hooks/useInput';
 import { useSaveRound } from '../../../hooks/useSaveRound';
 import { useSendForm } from '../../../hooks/useSendForm';
+import { getTimedScore } from '../../../helpers/time';
 import PropTypes from 'prop-types';
 import Character from '../character/Character';
 
@@ -95,7 +96,7 @@ function Gameboard({ level }) {
               )
             : null}
           {gameState === 'over' && savedRound ? (
-            <div>Your saved score is {savedRound.score}!</div>
+            <div>Your saved score is {getTimedScore(savedRound.score)}!</div>
           ) : null}
         </>
       )}
