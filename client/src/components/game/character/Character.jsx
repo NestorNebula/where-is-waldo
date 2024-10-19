@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Marker from '../marker/Marker';
+import styles from './Character.module.css';
 
 function Character({
   character,
@@ -11,7 +12,11 @@ function Character({
   return (
     <>
       {gameStatus !== 'wait' ? (
-        <div>
+        <div
+          className={`${styles.character} ${
+            characterStatus.found && styles.characterFound
+          }`}
+        >
           <div>{character.name}</div>
           <img
             src={`../src/assets/images/${character.avatar}`}
@@ -20,6 +25,7 @@ function Character({
         </div>
       ) : (
         <button
+          className={styles.buttonCharacter}
           disabled={characterStatus.found}
           aria-label="Choose character"
           onClick={() => onClick(character.id)}

@@ -1,0 +1,36 @@
+.character,
+.buttonCharacter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.75rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.buttonCharacter {
+  animation: characterAnimation 1s ease-out infinite alternate;
+}
+
+.characterFound,
+.buttonCharacter:disabled {
+  animation: none;
+  background-color: var(--palette-blue);
+  opacity: 0.5;
+}
+
+.character > img,
+.buttonCharacter > img {
+  height: 12rem;
+}
+
+@keyframes characterAnimation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.15);
+    color: var(--palette-blue);
+  }
+}
