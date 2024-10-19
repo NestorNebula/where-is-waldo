@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { promiseFetch } from '../../../helpers/fetch';
+import icon from '../../../assets/icons/icon.png';
+import styles from './Homepage.module.css';
 
 function Homepage() {
   const { user, setUser, levels, API_URL } = useContext(GameContext);
@@ -36,18 +38,20 @@ function Homepage() {
   };
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <div>Welcome to Where is Waldo?</div>
+        <img src={icon}></img>
       </header>
-      <section>
+      <section className={styles.section}>
         <div>Try to find Waldo and his friends in the levels below!</div>
-        <div>
+        <div className={styles.levels}>
           {levels.map((level) => {
             return (
               <button
                 key={level.id}
                 onClick={() => createRound(level.id)}
                 to={`/levels/${level.id}`}
+                className={styles.levelBtn}
               >
                 Level {level.id}
               </button>
