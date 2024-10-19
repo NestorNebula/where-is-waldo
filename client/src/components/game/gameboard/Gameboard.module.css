@@ -1,0 +1,22 @@
+.error,
+.loading {
+  font-size: 3rem;
+  justify-self: center;
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.image {
+  box-shadow: 0px 0px 5px black;
+}
+
+.characters {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+  grid-auto-flow: column;
+  justify-self: center;
+  gap: 1rem;
+}

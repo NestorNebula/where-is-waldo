@@ -8,6 +8,8 @@ import { useSendForm } from '../../../hooks/useSendForm';
 import { getTimedScore } from '../../../helpers/time';
 import PropTypes from 'prop-types';
 import Character from '../character/Character';
+import Marker from '../marker/Marker';
+import styles from './Gameboard.module.css';
 
 function Gameboard({ level }) {
   const { user, API_URL } = useContext(GameContext);
@@ -48,17 +50,33 @@ function Gameboard({ level }) {
   return (
     <>
       {error ? (
-        <div>{error}</div>
+        <div className={styles.error}>{error}</div>
       ) : loading ? (
-        <div>Loading Round...</div>
+        <div className={styles.loading}>Loading Round...</div>
       ) : (
         <>
-          <img
-            onClick={handleImageClick}
-            src={`../src/assets/images/${level.title}`}
-            alt="Level"
-          />
-          <div>
+          <div className={styles.imageContainer}>
+            <img
+              className={styles.image}
+              onClick={handleImageClick}
+              src={`../src/assets/images/${level.title}`}
+              alt="Level"
+            />
+            {characters.map((character, index) => {
+              const coordinates =
+                typeof character.coordinates === 'string'
+                  ? JSON.parse(character.coordinates)
+                  : character.coordinates;
+              return (
+                <Marker
+                  key={character.characterId}
+                  coordinates={coordinates}
+                  found={charactersFound[index].found}
+                />
+              );
+            })}
+          </div>
+          <div className={styles.characters}>
             {characters.map((character, index) => {
               const coordinates =
                 typeof character.coordinates === 'string'
@@ -78,7 +96,11 @@ function Gameboard({ level }) {
           </div>
           {gameState === 'over' && !formSent
             ? !user.username && (
-                <form aria-label="Submit Username" onSubmit={sendForm}>
+                <form
+                  className={styles.form}
+                  aria-label="Submit Username"
+                  onSubmit={sendForm}
+                >
                   <div>
                     <label htmlFor="username">Username</label>
                     <input
@@ -96,7 +118,9 @@ function Gameboard({ level }) {
               )
             : null}
           {gameState === 'over' && savedRound ? (
-            <div>Your saved score is {getTimedScore(savedRound.score)}!</div>
+            <div className={styles.savedScore}>
+              Your saved score is {getTimedScore(savedRound.score)}!
+            </div>
           ) : null}
         </>
       )}
