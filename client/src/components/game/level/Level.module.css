@@ -7,14 +7,16 @@
 
 .section {
   display: grid;
+  gap: 2rem;
 }
 
 .errorSection {
   font-size: 2rem;
 }
 
-@media (min-width: 1000px) {
+/* @media (min-width: 1150px) {
   .section {
     grid-template-columns: 1fr auto;
+    gap: 0;
   }
-}
+} */
