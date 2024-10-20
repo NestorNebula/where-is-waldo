@@ -21,7 +21,28 @@ vi.mock('../src/hooks/useGame', () => {
     useGame: () => {
       return {
         gameState: 'over',
-        charactersFound: [],
+        charactersFound: [
+          {
+            id: fakeContext.levels[0].characters[0].characterId,
+            found: false,
+          },
+          {
+            id: fakeContext.levels[0].characters[1].characterId,
+            found: false,
+          },
+          {
+            id: fakeContext.levels[0].characters[2].characterId,
+            found: false,
+          },
+          {
+            id: fakeContext.levels[0].characters[3].characterId,
+            found: false,
+          },
+          {
+            id: fakeContext.levels[0].characters[4].characterId,
+            found: false,
+          },
+        ],
         handleImageClick: () => {},
         handleCharacterClick: () => {},
       };

@@ -14,6 +14,17 @@ vi.mock('react', async () => {
   };
 });
 
+vi.mock('../src/hooks/useDialog', () => {
+  return {
+    useDialog: () => {
+      return {
+        ref: null,
+        setRules: () => {},
+      };
+    },
+  };
+});
+
 beforeEach(() => {
   render(
     <MemoryRouter>
