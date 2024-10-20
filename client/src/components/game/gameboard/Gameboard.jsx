@@ -78,17 +78,12 @@ function Gameboard({ level }) {
           </div>
           <div className={styles.characters}>
             {characters.map((character, index) => {
-              const coordinates =
-                typeof character.coordinates === 'string'
-                  ? JSON.parse(character.coordinates)
-                  : character.coordinates;
               return (
                 <Character
                   key={`${character.characterId}n${index}`}
                   character={character.character}
                   characterStatus={charactersFound[index]}
                   gameStatus={gameState}
-                  coordinates={coordinates}
                   onClick={handleCharacterClick}
                 />
               );

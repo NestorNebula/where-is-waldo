@@ -1,14 +1,7 @@
 import PropTypes from 'prop-types';
-import Marker from '../marker/Marker';
 import styles from './Character.module.css';
 
-function Character({
-  character,
-  characterStatus,
-  gameStatus,
-  coordinates,
-  onClick,
-}) {
+function Character({ character, characterStatus, gameStatus, onClick }) {
   return (
     <>
       {gameStatus !== 'wait' ? (
@@ -37,11 +30,6 @@ function Character({
           />
         </button>
       )}
-      <Marker
-        coordinates={
-          characterStatus && characterStatus.found ? coordinates : null
-        }
-      />
     </>
   );
 }
@@ -50,7 +38,6 @@ Character.propTypes = {
   character: PropTypes.object.isRequired,
   characterStatus: PropTypes.object.isRequired,
   gameStatus: PropTypes.string.isRequired,
-  coordinates: PropTypes.object.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
