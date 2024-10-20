@@ -97,6 +97,11 @@ function Gameboard({ level }) {
                   onSubmit={sendForm}
                 >
                   <div>
+                    <div>Congratulations! </div>
+                    <div>Your score has been saved.</div>
+                    <div>Please enter your username.</div>
+                  </div>
+                  <div className={styles.formInput}>
                     <label htmlFor="username">Username</label>
                     <input
                       id="username"
@@ -111,7 +116,7 @@ function Gameboard({ level }) {
                   <button>Submit</button>
                 </form>
               )
-            : null}
+            : console.log(gameState, formSent, user.username)}
           {gameState === 'over' && savedRound ? (
             <div className={styles.savedScore}>
               Your saved score is {getTimedScore(savedRound.score)}!
