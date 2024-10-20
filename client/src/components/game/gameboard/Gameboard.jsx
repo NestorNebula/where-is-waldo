@@ -116,8 +116,8 @@ function Gameboard({ level }) {
                   <button>Submit</button>
                 </form>
               )
-            : console.log(gameState, formSent, user.username)}
-          {gameState === 'over' && savedRound ? (
+            : null}
+          {gameState === 'over' && savedRound && savedRound.score ? (
             <div className={styles.savedScore}>
               Your saved score is {getTimedScore(savedRound.score)}!
             </div>
