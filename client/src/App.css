@@ -30,12 +30,11 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: var(--palette-blue);
 }
 
 nav {
   font-size: 4rem;
-  background: linear-gradient(var(--palette-red) 70%, var(--palette-white));
+  background: linear-gradient(var(--palette-blue) 70%, var(--palette-white));
   padding: 3rem 2rem;
 }
 
