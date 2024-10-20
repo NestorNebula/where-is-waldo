@@ -1,4 +1,7 @@
 const prisma = require('../models/queries');
+const { body } = require('express-validator');
+
+const validateUser = [body('username').trim().blacklist('<>')];
 
 const getUser = async (req, res) => {
   const userId = req.params.userId;
@@ -13,10 +16,13 @@ const postUser = async (req, res) => {
   res.status(201).json({ id: user.id });
 };
 
-const updateUser = async (req, res) => {
-  const user = await prisma.updateUser(req.params.userId, req.body.username);
-  if (!user) return res.sendStatus(400);
-  res.json(user);
-};
+const updateUser = [
+  validateUser,
+  async (req, res) => {
+    const user = await prisma.updateUser(req.params.userId, req.body.username);
+    if (!user) return res.sendStatus(400);
+    res.json(user);
+  },
+];
 
 module.exports = { getUser, postUser, updateUser };
