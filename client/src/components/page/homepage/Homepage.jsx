@@ -53,7 +53,8 @@ function Homepage() {
                 to={`/levels/${level.id}`}
                 className={styles.levelBtn}
               >
-                Level {level.id}
+                <div>Level {level.id}</div>
+                <img src={`../src/assets/images/${level.title}`} alt="" />
               </button>
             );
           })}
