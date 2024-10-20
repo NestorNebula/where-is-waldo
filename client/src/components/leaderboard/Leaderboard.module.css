@@ -52,11 +52,15 @@
 .rounds {
   align-self: center;
   display: flex;
+  flex-direction: column;
+  gap: 2rem;
   font-size: 2rem;
   padding: 3rem;
 }
 
 .round {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  justify-items: center;
   gap: 5rem;
 }
