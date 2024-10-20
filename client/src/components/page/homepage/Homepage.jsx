@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { promiseFetch } from '../../../helpers/fetch';
@@ -36,6 +36,13 @@ function Homepage() {
       });
     }
   };
+
+  const [rules, setRules] = useState(false);
+  const ref = useRef();
+  useEffect(() => {
+    if (rules) ref.current.showModal();
+    else ref.current.close();
+  }, [rules]);
   return (
     <>
       <header className={styles.header}>
@@ -43,6 +50,32 @@ function Homepage() {
         <img src={icon}></img>
       </header>
       <section className={styles.section}>
+        <button className={styles.rulesBtn} onClick={() => setRules(true)}>
+          Rules
+        </button>
+        <dialog onCancel={() => setRules(false)} ref={ref}>
+          <div className={styles.dialogContent}>
+            <div>{`"Where's Waldo?" rules`}</div>
+            <div>Click on any Level you want to play.</div>
+            <div>
+              On the level page, you will have an image and a list of characters
+              you must find in the image.
+            </div>
+            <div>
+              Once you think you have found one of the characters, click on the
+              place where you think you have found it and click on the
+              corresponding character image.
+            </div>
+            <div>
+              If you are right, a circle will appear around the character.
+            </div>
+            <div>
+              Once you have found all the characters, the game is over. If you
+              do not have a username, you will be asked to enter one.
+            </div>
+            <button onClick={() => setRules(false)}>Close</button>
+          </div>
+        </dialog>
         <div>Try to find Waldo and his friends in the levels below!</div>
         <div className={styles.levels}>
           {levels.map((level) => {
