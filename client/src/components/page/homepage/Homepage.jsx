@@ -1,7 +1,8 @@
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GameContext } from '../../../context/GameContext';
 import { promiseFetch } from '../../../helpers/fetch';
+import { useDialog } from '../../../hooks/useDialog';
 import icon from '../../../assets/icons/icon.png';
 import styles from './Homepage.module.css';
 
@@ -37,12 +38,8 @@ function Homepage() {
     }
   };
 
-  const [rules, setRules] = useState(false);
-  const ref = useRef();
-  useEffect(() => {
-    if (rules) ref.current.showModal();
-    else ref.current.close();
-  }, [rules]);
+  const { ref, setRules } = useDialog();
+
   return (
     <>
       <header className={styles.header}>
