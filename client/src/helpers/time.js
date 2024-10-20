@@ -19,7 +19,7 @@ const getTimedScore = (score) => {
     ? `${hours}h ${minutes}min ${seconds}seconds`
     : minutes
     ? `${minutes}min ${seconds}seconds`
-    : `${seconds}seconds ${scoreToConvert}`;
+    : `${seconds}seconds`;
 };
 
 export { getTimedScore };
