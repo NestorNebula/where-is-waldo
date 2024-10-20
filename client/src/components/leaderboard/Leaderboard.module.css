@@ -1,0 +1,62 @@
+.error,
+.loading,
+.header {
+  font-size: 3rem;
+  justify-self: center;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.25;
+}
+
+.background > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.header {
+  padding: 2.5rem;
+}
+
+.section {
+  padding: 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionHeader {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 2.5rem;
+}
+
+.sectionHeader > button {
+  background-color: var(--palette-red);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 5rem;
+}
+
+.sectionHeader > button > img {
+  min-width: 2rem;
+  filter: invert();
+}
+
+.rounds {
+  align-self: center;
+  display: flex;
+  font-size: 2rem;
+  padding: 3rem;
+}
+
+.round {
+  display: flex;
+  gap: 5rem;
+}

@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 import { GameContext } from '../../context/GameContext';
 import { useLeaderboard } from '../../hooks/useLeaderboard';
 import { getTimedScore } from '../../helpers/time';
+import styles from './Leaderboard.module.css';
+import arrow from '../../assets/icons/arrow.svg';
 
 function Leaderboard() {
   const { user, levels } = useContext(GameContext);
@@ -22,33 +24,48 @@ function Leaderboard() {
   return (
     <>
       {error ? (
-        <div>{error}</div>
+        <div className={styles.error}>{error}</div>
       ) : loading ? (
-        <div>Loading Leaderboard...</div>
+        <div className={styles.loading}>Loading Leaderboard...</div>
       ) : (
         <>
-          <header>
+          <div className={styles.background}>
+            <img src={`../src/assets/images/image${displayedLevel + 1}.jpg`} />
+          </div>
+          <header className={styles.header}>
             <div>Leaderboard</div>
           </header>
-          <section>
-            <div>
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
               <button
                 aria-label="previous level"
                 onClick={() => updateDisplayedLevel('left')}
-              ></button>
+              >
+                <img src={arrow} />
+              </button>
               <div>Level {levels[displayedLevel].id}</div>
               <button
                 aria-label="next level"
                 onClick={() => updateDisplayedLevel('right')}
-              ></button>
+              >
+                <img style={{ transform: 'rotate(180deg)' }} src={arrow} />
+              </button>
             </div>
-            <div>
-              {roundsLb[displayedLevel].map((round) => {
+            <div className={styles.rounds}>
+              {roundsLb[displayedLevel].map((round, index) => {
                 return (
                   round.score && (
-                    <div key={round.userId + round.photoId}>
+                    <div
+                      className={styles.round}
+                      key={round.userId + round.photoId}
+                    >
+                      <div>{index + 1}</div>
                       <div>
-                        {round.userId === user.id ? 'You' : round.user.username}
+                        {round.userId === user.id
+                          ? 'You'
+                          : round.user.username
+                          ? round.user.username
+                          : 'Anonymous'}
                       </div>
                       <div>{getTimedScore(round.score)}</div>
                     </div>
