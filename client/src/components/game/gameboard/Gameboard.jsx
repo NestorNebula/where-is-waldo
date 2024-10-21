@@ -59,7 +59,7 @@ function Gameboard({ level }) {
             <img
               className={styles.image}
               onClick={handleImageClick}
-              src={`../src/assets/images/${level.title}`}
+              src={`/assets/images/${level.title}`}
               alt="Level"
             />
             {characters.map((character, index) => {

@@ -30,7 +30,7 @@ function Leaderboard() {
       ) : (
         <>
           <div className={styles.background}>
-            <img src={`../src/assets/images/image${displayedLevel + 1}.jpg`} />
+            <img src={`/assets/images/image${displayedLevel + 1}.jpg`} />
           </div>
           <header className={styles.header}>
             <div>Leaderboard</div>
