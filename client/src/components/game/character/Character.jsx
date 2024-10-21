@@ -21,7 +21,7 @@ function Character({ character, characterStatus, gameStatus, onClick }) {
           onClick={() => onClick(character.id)}
         >
           <div>{character.name}</div>
-          <img src={`/assets/{${character.title}}`} alt="Character" />
+          <img src={`/assets/images/${character.avatar}`} alt="Character" />
         </button>
       )}
     </>
