@@ -4,7 +4,19 @@ require('dotenv').config();
 const cors = require('cors');
 const router = require('./routes/routes');
 
-app.use(cors());
+const origins = [process.env.ORIGIN1];
+app.use(
+  cors({
+    origin: function (origin, cb) {
+      if (origins.indexOf(origin) === -1) {
+        return cb(
+          new Error("The origin doesn't have access rights to this API.")
+        );
+      }
+      return cb(null, true);
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

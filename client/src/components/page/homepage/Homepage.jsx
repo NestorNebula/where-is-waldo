@@ -75,19 +75,20 @@ function Homepage() {
         </dialog>
         <div>Try to find Waldo and his friends in the levels below!</div>
         <div className={styles.levels}>
-          {levels.map((level) => {
-            return (
-              <button
-                key={level.id}
-                onClick={() => createRound(level.id)}
-                to={`/levels/${level.id}`}
-                className={styles.levelBtn}
-              >
-                <div>Level {level.id}</div>
-                <img src={`../src/assets/images/${level.title}`} alt="" />
-              </button>
-            );
-          })}
+          {levels &&
+            levels.map((level) => {
+              return (
+                <button
+                  key={level.id}
+                  onClick={() => createRound(level.id)}
+                  to={`/levels/${level.id}`}
+                  className={styles.levelBtn}
+                >
+                  <div>Level {level.id}</div>
+                  <img src={`../src/assets/images/${level.title}`} alt="" />
+                </button>
+              );
+            })}
         </div>
       </section>
     </>
