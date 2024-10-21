@@ -2,7 +2,7 @@
 
 <div align="center">
     <a href="https://github.com/NestorNebula/where-is-waldo">
-        <img src="./client/public/icon.png" alt="Project Logo" width="100" height="100" />
+        <img src="./client/public/assets/icons/icon.png" alt="Project Logo" width="100" height="100" />
     </a>
     
 <h3>Where's Waldo?</h3>
@@ -10,7 +10,7 @@
 
 ## About
 
-![App Screenshot](./client/public/where-is-waldo.png)
+![App Screenshot](./client/public/assets/images/where-is-waldo.png)
 
 This project is a photo tagging app/game inspired by the "Where's Waldo?" books series.
 
