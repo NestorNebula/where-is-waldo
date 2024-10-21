@@ -66,6 +66,7 @@ The user time is then stored and a leaderboard for each level is provided in the
    ```
    PORT=<PORT>
    DATABASE_URL=<your_db_url>
+   ORIGIN1=<your_clientapp_origin>
    ```
 
 6. Install required packages
