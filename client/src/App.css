@@ -64,3 +64,18 @@ ul {
 main {
   display: grid;
 }
+
+footer {
+  margin-top: auto;
+  background: linear-gradient(var(--palette-white), var(--palette-blue) 30%);
+  padding: 3rem 2rem 2rem;
+  font-size: 1.25rem;
+}
+
+footer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  color: var(--palette-white);
+}
