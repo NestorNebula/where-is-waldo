@@ -51,10 +51,10 @@ The user time is then stored and a leaderboard for each level is provided in the
 
    ```
    # SSH:
-   git remote add upstream git@github.com:where-is-waldo/<repo name>.git
+   git remote add upstream git@github.com:NestorNebula/where-is-waldo.git
 
    # HTTPS:
-   git remote add upstream https://github.com/where-is-waldo/<repo name>.git
+   git remote add upstream https://github.com/NestorNebula/where-is-waldo.git
    ```
 
 4. Go to the server directory
